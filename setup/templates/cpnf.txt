@@ -1,0 +1,50 @@
+[Unit]
+Description=A spring Boot Application for examportal
+After=syslog.target
+
+[Service]
+User=ubuntu
+ExecStart=/home/ubuntu/project/examportal.jar
+SucessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
+/etc/systemd/system
+            examportal.service
+
+systemctl enable examportal
+systemctl start examportal
+systemctl stop examportal
+systemctl restart examportal
+systemctl status examportal
+
+systemctl enable nginx
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+systemctl status nginx
+
+/etc/nginx/conf.d/
+                     
+                  udayshastrakar.tech.conf
+
+server{
+listen 0.0.0.0:80;
+root /home/ubuntu/project/examfront;
+server_name udayshastrakar.tech;
+location / {
+   try_files $uri $uri/ /index.html;
+ }
+}
+
+Job for nginx.service failed because the control process exited with error code.
+See "systemctl status nginx.service" and "journalctl -xeu nginx.service" for details.
+
+
+
+
+
+
+
+
